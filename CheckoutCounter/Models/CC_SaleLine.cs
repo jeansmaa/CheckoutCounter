@@ -19,5 +19,17 @@ namespace CheckoutCounter.Models
             this.Product = product;
             this.Promotion = null;
         }
+        public decimal GetTotalPrice()
+        {
+            if (this.Promotion != null)
+            {
+                this.Promotion.Execute(this.QuantityToDeliver);
+                return this.Promotion.QuantityToPay * this.Product.UnitPrice;
+            }
+            else
+            {
+                return this.QuantityToDeliver*this.Product.UnitPrice;
+            }
+        }
     }
 }

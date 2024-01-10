@@ -16,7 +16,7 @@ namespace CheckoutCounter.Models
         
         public string Name { get; set; }        
         public string Description { get; set; }
-        public decimal? UnitPrice { get; set; }
+        public decimal UnitPrice { get; set; }
 
         public SoldBy SoldBy { get; set; }
 

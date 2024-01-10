@@ -8,6 +8,7 @@ namespace CheckoutCounter.Services
 {
     public class CC_CheckOutService
     {
+
         public CC_CheckOutService() { }
     }
 }

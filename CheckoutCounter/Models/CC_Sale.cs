@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace CheckoutCounter.Models
-{   //Interface to define de contract to all models 
-    public interface CC_Entity
+{
+    public class CC_Sale : CC_Entity
     {
-        [Key]
-        int Id { get; set; }
+        public int Id { get; set; }        
+        public CC_Sale() { }
     }
 }

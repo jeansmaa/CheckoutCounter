@@ -11,9 +11,9 @@ namespace CheckoutCounter.Models
     public class CC_Product:CC_Entity
     {
         public int Id { get; set; }
-        [StringLength(128)]
+        
         public string Code { get; set; }
-        [StringLength(256)]
+        
         public string Name { get; set; }        
         public string Description { get; set; }
         public decimal? UnitPrice { get; set; }

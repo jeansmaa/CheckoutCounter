@@ -18,9 +18,10 @@ namespace CheckoutCounter.Services
         {
             this.promotions.Add(promotion);
         }
-        public CC_Promotion GetProductPromotion(int ProductId)
+        public CC_Promotion GetProductPromotion(string ProductCode)
         {
-            return this.promotions.First(x => x.Product.Id == ProductId);
+            return this.promotions.FirstOrDefault(x => x.Product.Code == ProductCode);
+            
         }
     }
 }

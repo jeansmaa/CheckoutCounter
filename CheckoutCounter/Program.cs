@@ -38,4 +38,4 @@ p4.SoldBy = SoldBy.Bybulk;
 cC.Scan(p4);
 
 cC.sale.PrintReceipt();
-//Console.WriteLine("");
+

@@ -8,17 +8,16 @@ using System.Threading.Tasks;
 
 namespace CheckoutCounter.Models
 {
-    public class CC_Product:CC_Entity
+    public class CC_Product : CC_Entity
     {
         public int Id { get; set; }
-        
         public string Code { get; set; }
-        
-        public string Name { get; set; }        
+        public string Name { get; set; }
         public string Description { get; set; }
         public decimal UnitPrice { get; set; }
-
+        public string SM_MeasurementUnit { get; set; }
         public SoldBy SoldBy { get; set; }
+        public decimal Weight{get;set;}
 
 
         public CC_Product() { }

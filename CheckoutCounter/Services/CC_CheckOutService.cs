@@ -11,10 +11,10 @@ namespace CheckoutCounter.Services
     {
         public CC_PromotionService promotionService { get; set; }
         public CC_Sale sale { get; set; }
-        public CC_CheckOutService() 
+        public CC_CheckOutService(CC_PromotionService promotionService) 
         {
-            this.promotionService = new CC_PromotionService();
-            this.sale = new CC_Sale();
+            this.promotionService = promotionService;
+            this.sale = new CC_Sale(this.promotionService);
         }
         public void Scan(CC_Product product)
         {

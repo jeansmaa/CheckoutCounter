@@ -15,7 +15,7 @@ namespace CheckoutCounter.Models
         public string Name { get; set; }
         public string Description { get; set; }
         public decimal UnitPrice { get; set; }
-        public string SM_MeasurementUnit { get; set; }
+        public string MeasurementUnit { get; set; }
         public SoldBy SoldBy { get; set; }
         public decimal Weight{get;set;}
 

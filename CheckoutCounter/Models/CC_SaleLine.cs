@@ -57,7 +57,8 @@ namespace CheckoutCounter.Models
                     }
                     break;
                 case PromotionType.BuyTwoGetOne:
-                    // code block
+                    var memory = decimal.ToInt32(Math.Truncate((decimal)this.QuantityToDeliver / 3)); 
+                    this.QuantityToPay=this.QuantityToDeliver-memory;
                     break;
                 /*default:
                     // code block
@@ -79,8 +80,8 @@ namespace CheckoutCounter.Models
                                
             }
             this.TextToPrint = this.Product.Code + " - " + this.Product.Name + " x" +
-                    this.QuantityToDeliver + " " + this.TotalPrice.ToString("#,##0.00") + 
-                    " - " + this.QuantityAwarded + " for free";
+                    this.QuantityToDeliver + " "+this.Product.MeasurementUnit +" " + this.TotalPrice.ToString("#,##0.00") + 
+                    " - " + this.QuantityAwarded +" "+this.Product.MeasurementUnit+" for free";
         }
         public CC_SaleLine(CC_Product product, CC_Promotion promotion=null)
         {            

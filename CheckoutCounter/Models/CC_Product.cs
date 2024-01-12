@@ -12,10 +12,10 @@ namespace CheckoutCounter.Models
     {
         public int Id { get; set; }
         public string Code { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
+        public string? Name { get; set; }
+        public string? Description { get; set; }
         public decimal UnitPrice { get; set; }
-        public string MeasurementUnit { get; set; }
+        public string? MeasurementUnit { get; set; }
         public SoldBy SoldBy { get; set; }
         public decimal Weight{get;set;}
 

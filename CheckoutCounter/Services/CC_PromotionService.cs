@@ -18,7 +18,7 @@ namespace CheckoutCounter.Services
         {
             this.promotions.Add(promotion);
         }
-        public CC_Promotion GetProductPromotion(string ProductCode)
+        public CC_Promotion? GetProductPromotion(string ProductCode)
         {
             return this.promotions.FirstOrDefault(x => x.Product.Code == ProductCode);
             

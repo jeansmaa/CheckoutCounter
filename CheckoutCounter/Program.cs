@@ -41,27 +41,22 @@ CC_Promotion promotion2 = new CC_Promotion(p3, PromotionType.BuyTwoGetOne);
 promotionService.AddPromotion(promotion1);
 promotionService.AddPromotion(promotion2);
 ///////////////////////
-for (int i = 0; i < 4; i++)
-{
-    cC.Scan(p2);
-}
-for (int i = 0; i < 80; i++)
+//for (int i = 0; i < 4; i++)
+//{
+//    cC.Scan(p2);
+//}
+for (int i = 0; i < 2; i++)
 {
     cC.Scan(p1);
 }
-for (int i = 0; i < 66; i++)
+for (int i = 0; i < 3; i++)
 {
     cC.Scan(p3);
 }
-//cC.Scan(p1);
-
-//cC.Scan(p4);
-//cC.Scan(p2);
-//cC.Scan(p2);
-//cC.Scan(p3);
-//cC.Scan(p3);
-//cC.Scan(p5);
-//cC.Scan(p6);
-//cC.Scan(p7);
+for (int i = 0; i < 4; i++)
+{
+    cC.Scan(p1);
+}
 cC.sale.PrintReceipt();
+Console.Read();
 

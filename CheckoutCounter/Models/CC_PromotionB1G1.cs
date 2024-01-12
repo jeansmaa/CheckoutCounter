@@ -8,8 +8,8 @@ namespace CheckoutCounter.Models
 {
     public class CC_PromotionB1G1:CC_Promotion
     {
-        public CC_PromotionB1G1(CC_Product product/*, PromotionType promotionType*/):
-            base(product/*,promotionType*/)
+        public CC_PromotionB1G1(CC_Product product):
+            base(product)
         { }
         public override void CalculatePromotion(int quantityToDeliver)
         {

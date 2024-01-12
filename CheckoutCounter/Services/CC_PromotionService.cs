@@ -9,18 +9,18 @@ namespace CheckoutCounter.Services
 {
     public class CC_PromotionService
     {
-        List<CC_Promotion> promotions;
+        List<CC_Promotion> Promotions;
         public CC_PromotionService() 
         {
-            this.promotions = new List<CC_Promotion>();
+            this.Promotions = new List<CC_Promotion>();
         }
         public void AddPromotion(CC_Promotion promotion) 
         {
-            this.promotions.Add(promotion);
+            this.Promotions.Add(promotion);
         }
-        public CC_Promotion? GetProductPromotion(string ProductCode)
+        public CC_Promotion? GetProductPromotion(string productCode)
         {
-            return this.promotions.FirstOrDefault(x => x.Product.Code == ProductCode);
+            return this.Promotions.FirstOrDefault(x => x.Product.Code == productCode);
             
         }
     }

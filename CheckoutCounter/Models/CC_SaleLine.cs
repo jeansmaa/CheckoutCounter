@@ -15,13 +15,13 @@ namespace CheckoutCounter.Models
         public decimal TotalPrice { get; set; }
         public decimal? TotalWeight { get; set; }
         //QuantityToDeliver - This is the value the customer want to buy
-        public int QuantityToDeliver { get; set; }
+        private int QuantityToDeliver { get; set; }
 
         //QuantityToPay - This is the value the customer have to pay according to QuantityToDeliver 
-        public int QuantityToPay { get; set; }
+        private int QuantityToPay { get; set; }
 
         //QuantityAwarded - This is the value for the number of items got for the customers once QuantityToDeliver was proccesed  
-        public int QuantityAwarded { get; set; }
+        private int QuantityAwarded { get; set; }
         private void ProductWeighing()
         {
             this.QuantityToDeliver += Decimal.ToInt32(this.Product.Weight);
@@ -52,9 +52,7 @@ namespace CheckoutCounter.Models
         {
             if (this.Promotion != null)
             {
-                //this.Promotion.ProccesingPromotion(this.QuantityToDeliver);                
                 this.Promotion.CalculatePromotion(this.QuantityToDeliver);
-                //////////////////////////////////////////////////
                 this.UpdatingQuantities();
                 this.TotalPrice = this.QuantityToPay * this.Product.UnitPrice;
             }

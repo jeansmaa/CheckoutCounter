@@ -36,8 +36,8 @@ p3.MeasurementUnit = "U";
 p3.Code = "Y5A";
 
 ////////////////////////
-CC_Promotion promotion1 = new CC_Promotion(p1,PromotionType.BuyOneGetOne);
-CC_Promotion promotion2 = new CC_Promotion(p3, PromotionType.BuyTwoGetOne);
+CC_Promotion promotion1 = new CC_PromotionB1G1(p1/*,PromotionType.BuyOneGetOne*/);
+CC_Promotion promotion2 = new CC_PromotionB2G1(p3/*, PromotionType.BuyTwoGetOne*/);
 promotionService.AddPromotion(promotion1);
 promotionService.AddPromotion(promotion2);
 ///////////////////////
@@ -53,10 +53,10 @@ for (int i = 0; i < 3; i++)
 {
     cC.Scan(p3);
 }
-for (int i = 0; i < 4; i++)
-{
-    cC.Scan(p1);
-}
+//for (int i = 0; i < 4; i++)
+//{
+//    cC.Scan(p1);
+//}
 cC.sale.PrintReceipt();
 Console.Read();
 

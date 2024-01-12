@@ -42,49 +42,29 @@ namespace CheckoutCounter.Models
             }
             this.ProcessingItem();
         }
-        private void ProccesingPromotion()
+        private void UpdatingQuantities()
         {
-            //switch (this.Promotion.PromotionType)
-            //{
-            //    case PromotionType.BuyOneGetOne:
-            //        if (this.QuantityToDeliver % 2 == 0)
-            //        {
-            //            this.QuantityToPay = this.QuantityToDeliver / 2;                        
-            //        }
-            //        else
-            //        {
-            //            this.QuantityToPay= (this.QuantityToDeliver / 2)+1;
-            //        }
-            //        break;
-            //    case PromotionType.BuyTwoGetOne:
-            //        var memory = decimal.ToInt32(Math.Truncate((decimal)this.QuantityToDeliver / 3)); 
-            //        this.QuantityToPay=this.QuantityToDeliver-memory;
-            //        break;                
-            //}
-            //this.QuantityAwarded= this.QuantityToDeliver-this.QuantityToPay;
-            //this.TotalPrice = this.QuantityToPay * this.Product.UnitPrice;
-        }
+            this.QuantityAwarded = this.Promotion.QuantityAwarded;
+            this.QuantityToDeliver = this.Promotion.QuantityToDeliver;
+            this.QuantityToPay = this.Promotion.QuantityToPay;
+        }       
         private void ProcessingItem()
         {
             if (this.Promotion != null)
             {
-                //Code promotions for this product here
-                //this.ProccesingPromotion();
-                ///////////////////////////////
-                this.Promotion.ProccesingPromotion(this.QuantityToDeliver);
-                this.QuantityAwarded = this.Promotion.QuantityAwarded;
-                this.QuantityToDeliver = this.Promotion.QuantityToDeliver;
-                this.QuantityToPay = this.Promotion.QuantityToPay;
+                //this.Promotion.ProccesingPromotion(this.QuantityToDeliver);                
+                this.Promotion.CalculatePromotion(this.QuantityToDeliver);
+                //////////////////////////////////////////////////
+                this.UpdatingQuantities();
                 this.TotalPrice = this.QuantityToPay * this.Product.UnitPrice;
             }
             else
             {
                 this.TotalPrice = this.Product.UnitPrice * this.QuantityToDeliver;
-                               
             }
             this.TextToPrint = this.Product.Code + " - " + this.Product.Name + " x" +
-                    this.QuantityToDeliver + " "+this.Product.MeasurementUnit +" " + this.TotalPrice.ToString("#,##0.00") + 
-                    " - " + this.QuantityAwarded +" "+this.Product.MeasurementUnit+" for free";
+                    this.QuantityToDeliver + " " + this.Product.MeasurementUnit + " " + this.TotalPrice.ToString("#,##0.00") +
+                    " - " + this.QuantityAwarded + " " + this.Product.MeasurementUnit + " for free";
         }
         public CC_SaleLine(CC_Product product, CC_Promotion? promotion=null)
         {            

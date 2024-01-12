@@ -13,9 +13,9 @@ namespace CheckoutCounter.Models
         Bybulk = 1        
     }
     //Enum to set the type of promotion for a product
-    public enum PromotionType
+    /*public enum PromotionType
     {
         BuyOneGetOne = 0,
         BuyTwoGetOne = 1
-    }
+    }*/
 }

@@ -9,16 +9,16 @@ namespace CheckoutCounter.Services
 {
     public class CC_CheckOutService
     {
-        public CC_PromotionService promotionService { get; set; }
-        public CC_Sale sale { get; set; }
-        public CC_CheckOutService() 
+        public CC_PromotionService PromotionService { get; set; }
+        public CC_Sale Sale { get; set; }
+        public CC_CheckOutService(CC_PromotionService promotionService) 
         {
-            this.promotionService = new CC_PromotionService();
-            this.sale = new CC_Sale();
+            this.PromotionService = promotionService;
+            this.Sale = new CC_Sale(this.PromotionService);
         }
         public void Scan(CC_Product product)
         {
-            this.sale.AddItem(product);
+            this.Sale.AddItem(product);
         }
     }
 }

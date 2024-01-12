@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,46 +11,60 @@ namespace CheckoutCounter.Models
     {
         public string? TextToPrint{ get; set; }
         public CC_Product Product { get; set; }
-        CC_Promotion Promotion { get; set; }
+        public CC_Promotion Promotion { get; set; }
         public decimal TotalPrice { get; set; }
         public decimal? TotalWeight { get; set; }
         //QuantityToDeliver - This is the value the customer want to buy
-        public int QuantityToDeliver { get; set; }
+        private int QuantityToDeliver { get; set; }
 
         //QuantityToPay - This is the value the customer have to pay according to QuantityToDeliver 
-        //public int QuantityToPay { get; set; }
+        private int QuantityToPay { get; set; }
 
         //QuantityAwarded - This is the value for the number of items got for the customers once QuantityToDeliver was proccesed  
-        //public int QuantityAwarded { get; set; }
+        private int QuantityAwarded { get; set; }
+        private void ProductWeighing()
+        {
+            this.QuantityToDeliver += Decimal.ToInt32(this.Product.Weight);
+        }
+        private void PlusOneQuantity()
+        {
+            this.QuantityToDeliver++;
+        }
         public void Scanned()
         {
             if (this.Product.SoldBy == SoldBy.Bybulk)
             {
-                this.QuantityToDeliver += Decimal.ToInt32(this.Product.Weight);
+                this.ProductWeighing();
             }
             else
             {
-                this.QuantityToDeliver++;
+                this.PlusOneQuantity();
             }
-            this.ProccessingItem();
+            this.ProcessingItem();
         }
-        private void ProccessingItem()
+        private void UpdatingQuantities()
+        {
+            this.QuantityAwarded = this.Promotion.QuantityAwarded;
+            this.QuantityToDeliver = this.Promotion.QuantityToDeliver;
+            this.QuantityToPay = this.Promotion.QuantityToPay;
+        }       
+        private void ProcessingItem()
         {
             if (this.Promotion != null)
             {
-                //Code promotions for this product here
+                this.Promotion.CalculatePromotion(this.QuantityToDeliver);
+                this.UpdatingQuantities();
+                this.TotalPrice = this.QuantityToPay * this.Product.UnitPrice;
             }
             else
             {
                 this.TotalPrice = this.Product.UnitPrice * this.QuantityToDeliver;
-                this.TextToPrint = this.Product.Code + "-" + this.Product.Name + " x" +
-                    this.QuantityToDeliver + " " + this.TotalPrice.ToString("#,##0.00");
-
-                //Console.WriteLine(this.TextToPrint);
-                //Console.WriteLine("***************End*****************");
             }
+            this.TextToPrint = this.Product.Code + " - " + this.Product.Name + " x" +
+                    this.QuantityToDeliver + " " + this.Product.MeasurementUnit + " " + this.TotalPrice.ToString("#,##0.00") +
+                    " - " + this.QuantityAwarded + " " + this.Product.MeasurementUnit + " for free";
         }
-        public CC_SaleLine(CC_Product product, CC_Promotion promotion=null)
+        public CC_SaleLine(CC_Product product, CC_Promotion? promotion=null)
         {            
             this.Product = product;   
             this.Promotion = promotion;
